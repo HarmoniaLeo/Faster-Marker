@@ -261,14 +261,14 @@ void CmarkingDlg::OnBnClickedButton1()
 		return;
 	}
 	CString strFileTemp, strFileName;
-	int nIsFind = 1, count = 0;
+	int nIsFind = 1;
 	if (buf != folder)
 	{
 		folder = buf;
 		nIsFind = findFile.FindFile(folder + "\\*");
 	}
 
-	while(nIsFind)
+	while (nIsFind)
 	{
 		nIsFind = findFile.FindNextFile();
 		CString fulldir = folder + "\\" + findFile.GetFileName();
@@ -280,8 +280,11 @@ void CmarkingDlg::OnBnClickedButton1()
 		{
 			SetDlgItemText(IDD_MARKING_DIALOG, findFile.GetFileName());
 			gryTar = imread(dir, CV_8UC(1));
-			double timesx = (double)gryTar.cols / 1080;
-			double timesy = (double)gryTar.rows / 960;
+			double timesx = 1, timesy = 1;
+			if (gryTar.cols > 1080)
+				timesx = (double)gryTar.cols / 1080;
+			if (gryTar.cols > 960)
+				timesy = (double)gryTar.rows / 960;
 			times = timesx > timesy ? timesx : timesy;
 			resize(gryTar, gryTar, Size((int)(gryTar.cols / times), (int)(gryTar.rows / times)));
 			resize(picTar, picTar, Size((int)(picTar.cols / times), (int)(picTar.rows / times)));
@@ -291,17 +294,6 @@ void CmarkingDlg::OnBnClickedButton1()
 
 			break;
 		}
-		count++;
-	}
-	if (count == nIsFind)
-	{
-		MessageBox("最后一张了");
-		return;
-	}
-	if(nIsFind==0)
-	{
-		MessageBox("目录无效");
-		return;
 	}
 }
 

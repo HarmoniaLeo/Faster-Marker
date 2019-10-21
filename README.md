@@ -1,6 +1,6 @@
 ## 下载链接
 
-https://pan.baidu.com/s/1BzYHqC4c9nlpuGZKH2880w&shfl=sharepset 提取码：tzgk
+https://pan.baidu.com/s/1nLWYtWFacy4Mk9SI1qORMQ&shfl=sharepset 提取码：6qaf
 
 ## 使用方法
 1. 打开marking.exe
